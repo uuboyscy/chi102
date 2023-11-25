@@ -33,3 +33,11 @@ print(title_tag_list[0])
 title = title_tag_list[0].find("a")
 print(title.text)
 print("https://www.ptt.cc" + title["href"])
+print(title_tag_list[0].text)
+
+print(type(title_tag_list[0]))
+print(type(soup))
+
+print(
+    soup.select("div.title a")
+)
