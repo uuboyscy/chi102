@@ -17,7 +17,6 @@ for _ in range(5):
     for title_tag in title_tag_list:
         title = title_tag.text
         article_url = "https://www.ptt.cc" + title_tag["href"]
-
         print(title)
         print(article_url)
 
