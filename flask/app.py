@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import poker as p
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/source", static_folder="./source")
 
 
 @app.route("/test")
@@ -10,9 +10,16 @@ def index_page():
 
 
 # /hello/<name>
+# @app.route("/hello/<name>")
+# def hello(name):
+#     return f"Hello {name}!"
+
 @app.route("/hello/<name>")
 def hello(name):
-    return f"Hello {name}!"
+    return render_template(
+        "hello.html",
+        name=name,
+    )
 
 
 @app.route("/sum_fn/<x>/<y>")
