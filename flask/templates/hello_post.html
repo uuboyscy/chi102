@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form method="POST">
+        <input name="username">
+        <button>SUBMIT</button>
+    </form>
+
+    {% if request_method == "POST" %}
+    <h1>Hello {{ username }} !</h1>
+    {% elif request_method == "GET" %}
+    <h3>No Data.</h3>
+    {% endif %}
+
+</body>
+</html>

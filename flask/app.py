@@ -63,33 +63,58 @@ def hello_get() -> str:
     return f"Hello {username}, you are {age} years old."
 
 
+# @app.route("/hello_post", methods=["GET", "POST"])
+# def hello_post() -> str:
+#     result = """
+#         <form method="POST">
+#             <input name="username">
+#             <button>SUBMIT</button>
+#         </form>
+#     """
+
+#     request_method = request.method
+
+#     if request_method == "POST":
+#         username = request.form.get("username")
+#         result += f"""
+#             <h1>Hello {username} !</h1>
+#         """
+
+#     return result
+
+
 @app.route("/hello_post", methods=["GET", "POST"])
 def hello_post() -> str:
-    result = """
-        <form method="POST">
-            <input name="username">
-            <button>SUBMIT</button>
-        </form>
-    """
-
     request_method = request.method
-
-    if request_method == "POST":
-        username = request.form.get("username")
-        result += f"""
-            <h1>Hello {username} !</h1>
-        """
-
-    return result
+    username = request.form.get("username")
+    return render_template(
+        "hello_post.html",
+        request_method=request_method,
+        username=username,
+    )
 
 
 # [GET] /poker?player=5
-@app.route("/poker")
-def poker() -> str:
-    player = int(request.args.get("player"))
-    result = p.poker(player=player)
+# @app.route("/poker")
+# def poker() -> str:
+#     player = int(request.args.get("player"))
+#     result = p.poker(player=player)
 
-    return jsonify(result)
+#     return jsonify(result)
+
+@app.route('/poker', methods=['GET', 'POST'])
+def poker():
+    request_method = request.method
+    players = 0
+    cards = dict()
+    if request_method == 'POST':
+        players = int(request.form.get('players'))
+        cards = p.poker(players)
+    return render_template(
+        'poker.html',
+        request_method=request_method,
+        cards=cards,
+    )
 
 
 if __name__ == "__main__":
