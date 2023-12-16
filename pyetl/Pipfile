@@ -8,6 +8,7 @@ requests = "*"
 bs4 = "*"
 jieba = "*"
 pandas = "*"
+selenium = "*"
 
 [dev-packages]
 
